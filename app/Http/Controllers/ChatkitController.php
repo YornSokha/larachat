@@ -31,7 +31,8 @@ class ChatkitController extends Controller
 
         return view('welcome');
     }
-    function str_random($length = 10) {
+    function str_random($length = 10)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -50,7 +51,13 @@ class ChatkitController extends Controller
     public function join(Request $request)
     {
         // $chatkit_id = strtolower(str_random(5));
-        $chatkit_id = "fffff";
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 5; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $chatkit_id = strtolower($randomString);
 
         // Create User account on Chatkit
         $this->chatkit->createUser([
